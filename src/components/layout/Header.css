@@ -60,6 +60,10 @@
   color: #1a0a04 !important;
 }
 
+.site-nav__cta:hover {
+  color: #fff !important;
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
