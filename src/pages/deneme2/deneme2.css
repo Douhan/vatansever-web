@@ -190,6 +190,10 @@
   transition: color 0.2s ease;
 }
 
+.d2-nav__cta {
+  color: #fff !important;
+}
+
 .d2-nav a:hover {
   color: var(--d2-text);
 }

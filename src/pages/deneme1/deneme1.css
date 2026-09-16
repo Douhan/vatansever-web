@@ -213,6 +213,10 @@
   color: #fff;
 }
 
+.d1-nav__cta {
+  color: #fff !important;
+}
+
 .d1-header__back {
   display: none;
 }
