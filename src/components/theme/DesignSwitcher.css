@@ -1,0 +1,28 @@
+.design-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px;
+}
+
+.design-switcher__swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.design-switcher__swatch:hover {
+  transform: scale(1.18);
+}
+
+.design-switcher__swatch.is-active {
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 3px rgba(0, 0, 0, 0.4);
+  transform: scale(1.12);
+}
