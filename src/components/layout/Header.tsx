@@ -18,8 +18,9 @@ export function Header() {
     <header className="site-header">
       <div className="container site-header__row">
         <Link to="/" className="brand" onClick={() => setMenuOpen(false)}>
-          <span className="brand__mark" />
+          <span className="brand__bracket">&lt;</span>
           Vatansever
+          <span className="brand__bracket">/&gt;</span>
         </Link>
 
         <div className="site-header__actions">

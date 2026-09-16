@@ -17,7 +17,7 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 1px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 18px;
@@ -25,12 +25,11 @@
   color: #fff8f0;
 }
 
-.brand__mark {
-  width: 12px;
-  height: 12px;
-  border-radius: 4px;
-  background: var(--gradient-orange);
-  box-shadow: 0 0 14px 2px rgba(255, 106, 26, 0.6);
+.brand__bracket {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-weight: 500;
+  color: var(--color-orange-light);
+  text-shadow: 0 0 10px rgba(255, 106, 26, 0.45);
 }
 
 .site-header__actions {

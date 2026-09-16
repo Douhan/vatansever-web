@@ -37,8 +37,9 @@ export function Footer() {
       <div className="container site-footer__grid">
         <div>
           <Link to="/" className="brand">
-            <span className="brand__mark" />
+            <span className="brand__bracket">&lt;</span>
             Vatansever
+            <span className="brand__bracket">/&gt;</span>
           </Link>
           <p className="site-footer__desc">
             Mobil uygulama, web sitesi ve web uygulaması tasarlıyor; fikirlerinizi uçtan uca ürüne dönüştürüyoruz.

@@ -16,10 +16,7 @@ export function DesignSwitcher({ className }: { className?: string }) {
           title={item.label}
           aria-label={item.label}
           aria-pressed={theme === item.id}
-          onClick={() => {
-            setTheme(item.id);
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
+          onClick={() => setTheme(item.id)}
         />
       ))}
     </div>

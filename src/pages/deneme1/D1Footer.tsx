@@ -6,8 +6,9 @@ export function D1Footer() {
     <footer className="d1-footer">
       <div className="d1-container d1-footer__row">
         <Link to="/deneme-1" className="d1-brand">
-          <span className="d1-brand__mark" />
+          <span className="d1-brand__bracket">&lt;</span>
           Vatansever
+          <span className="d1-brand__bracket">/&gt;</span>
         </Link>
         <nav className="d1-footer__links">
           {D1_NAV_LINKS.map((link) => (

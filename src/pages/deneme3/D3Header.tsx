@@ -13,7 +13,9 @@ export function D3Header() {
     <header className="d3-header">
       <div className="d3-container d3-header__inner">
         <Link to="/deneme3" className="d3-brand">
+          <span className="d3-brand__bracket">&lt;</span>
           Vatansever
+          <span className="d3-brand__bracket">/&gt;</span>
         </Link>
         <nav className="d3-nav">
           {NAV_LINKS.map((link) => (

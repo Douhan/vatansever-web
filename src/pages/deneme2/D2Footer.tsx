@@ -6,7 +6,9 @@ export function D2Footer() {
     <footer className="d2-footer">
       <div className="d2-container d2-footer__row">
         <Link to="/deneme-2" className="d2-brand">
-          Vatansever<span className="d2-brand__dot">.</span>
+          <span className="d2-brand__bracket">&lt;</span>
+          Vatansever
+          <span className="d2-brand__bracket">/&gt;</span>
         </Link>
         <nav className="d2-footer__links">
           {D2_NAV_LINKS.map((link) => (

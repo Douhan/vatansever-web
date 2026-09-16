@@ -14,8 +14,9 @@ export function D1Header() {
       <div className="d1-container">
         <div className="d1-header__inner d1-glass">
           <Link to="/deneme-1" className="d1-brand">
-            <span className="d1-brand__mark" />
+            <span className="d1-brand__bracket">&lt;</span>
             Vatansever
+            <span className="d1-brand__bracket">/&gt;</span>
           </Link>
           <nav className="d1-nav">
             {NAV_LINKS.map((link) => (

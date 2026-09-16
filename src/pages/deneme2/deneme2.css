@@ -174,8 +174,12 @@
   gap: 2px;
 }
 
-.d2-brand__dot {
+.d2-brand__bracket {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-weight: 500;
+  font-size: 0.72em;
   color: var(--d2-accent);
+  opacity: 0.85;
 }
 
 .d2-nav {
