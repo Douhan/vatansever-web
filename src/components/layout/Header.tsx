@@ -23,19 +23,21 @@ export function Header() {
           <span className="brand__bracket">/&gt;</span>
         </Link>
 
-        <div className="site-header__actions">
-          <nav className={`site-nav ${menuOpen ? "is-open" : ""}`}>
-            {NAV_LINKS.map((link) => (
-              <Link key={link.label} to={link.to} onClick={() => setMenuOpen(false)}>
-                {link.label}
-              </Link>
-            ))}
-            <Button to="/#iletisim" size="sm" className="site-nav__cta" onClick={() => setMenuOpen(false)}>
-              Projeni Anlat
-            </Button>
-          </nav>
-
+        <div className="site-header__cluster">
           <DesignSwitcher className="site-header__switcher" />
+
+          <div className={`site-nav-pill ${menuOpen ? "is-open" : ""}`}>
+            <nav className="site-nav">
+              {NAV_LINKS.map((link) => (
+                <Link key={link.label} to={link.to} onClick={() => setMenuOpen(false)}>
+                  {link.label}
+                </Link>
+              ))}
+              <Button to="/#iletisim" size="sm" className="site-nav__cta" onClick={() => setMenuOpen(false)}>
+                Projeni Anlat
+              </Button>
+            </nav>
+          </div>
 
           <button
             type="button"

@@ -1,37 +1,38 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* Surfaces */
-  --color-bg: #0a0705;
-  --color-bg-soft: #0f0b08;
-  --color-surface: #16100c;
-  --color-surface-2: #1d1611;
-  --color-border: rgba(255, 231, 210, 0.1);
-  --color-border-strong: rgba(255, 231, 210, 0.18);
+  /* Surfaces — warm cream editorial paper, tasteskill.dev-inspired */
+  --color-bg: #f5f4f2;
+  --color-bg-soft: #ececea;
+  --color-surface: #ffffff;
+  --color-surface-2: #fbfaf9;
+  --color-border: rgba(10, 10, 10, 0.08);
+  --color-border-strong: rgba(10, 10, 10, 0.14);
 
   /* Text */
-  --color-text: #f7ede0;
-  --color-text-dim: #b9a998;
-  --color-text-faint: #7d6f61;
+  --color-heading: #0a0a0a;
+  --color-text: #2b2b2b;
+  --color-text-dim: #6b6b6b;
+  --color-text-faint: #8f8f8f;
 
   /* Brand — orange / ember */
   --color-orange: #ff6a1a;
-  --color-orange-light: #ffb04d;
-  --color-orange-pale: #ffd9a8;
+  --color-orange-light: #d9550f;
+  --color-orange-pale: #ffe4cf;
   --color-orange-dark: #c73f0a;
   --gradient-orange: linear-gradient(135deg, #ffb04d 0%, #ff6a1a 55%, #c73f0a 100%);
-  --gradient-orange-soft: linear-gradient(180deg, rgba(255, 138, 58, 0.16), rgba(255, 106, 26, 0));
-  --glow-orange: 0 3px 8px rgba(199, 63, 10, 0.14), 0 8px 20px rgba(255, 106, 26, 0.16);
+  --gradient-orange-soft: linear-gradient(180deg, rgba(255, 138, 58, 0.14), rgba(255, 106, 26, 0));
+  --glow-orange: 0 3px 8px rgba(199, 63, 10, 0.12), 0 8px 20px rgba(255, 106, 26, 0.14);
 
   /* Typography */
-  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-sans: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Manrope", system-ui, sans-serif;
 
   /* Spacing / layout */
   --container-w: 1180px;
   --radius-sm: 10px;
   --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-lg: 20px;
   --radius-pill: 999px;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

@@ -27,7 +27,7 @@
 .portfolio-card__body h3 {
   margin-top: 12px;
   font-size: 19px;
-  color: #fff8f0;
+  color: var(--color-heading);
 }
 
 .portfolio-card__body p {

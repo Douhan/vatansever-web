@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
 
 *,
 *::before,
@@ -61,8 +61,8 @@ select {
 }
 
 ::selection {
-  background: rgba(255, 106, 26, 0.35);
-  color: #fff;
+  background: rgba(255, 106, 26, 0.28);
+  color: var(--color-heading);
 }
 
 /* Layout */
@@ -108,7 +108,7 @@ select {
 
 .section-title {
   font-size: clamp(28px, 4vw, 42px);
-  color: #fff8f0;
+  color: var(--color-heading);
 }
 
 .section-sub {
@@ -124,10 +124,10 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 13px 26px;
-  border-radius: var(--radius-pill);
-  font-size: 14.5px;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 16px;
+  font-size: 16px;
   font-weight: 600;
   border: 1px solid transparent;
   cursor: pointer;
@@ -139,27 +139,34 @@ select {
   transform: translateY(1px);
 }
 
+/* Matches tasteskill.dev's "See what is new in v2" button exactly: bg, radius,
+   shadow, hover glow, active scale, and the 0.5s cubic-bezier(0.16,1,0.3,1) easing. */
 .btn-primary {
-  background: var(--gradient-orange);
+  background: #0a0a0a;
   background-clip: padding-box;
-  color: #1a0a04;
-  box-shadow: var(--glow-orange);
+  color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 14px 32px -8px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(199, 63, 10, 0.18), 0 12px 26px rgba(255, 106, 26, 0.22);
+  transform: none;
+  box-shadow: 0 24px 44px -10px rgba(255, 107, 0, 0.35), 0 18px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
 }
 
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 10, 10, 0.03);
   border-color: var(--color-border-strong);
   color: var(--color-text);
 }
 
 .btn-ghost:hover {
   border-color: rgba(255, 138, 58, 0.5);
-  color: #fff;
+  color: var(--color-heading);
   transform: translateY(-2px);
 }
 

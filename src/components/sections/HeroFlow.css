@@ -1,0 +1,154 @@
+.hero-flow {
+  position: relative;
+  width: 100%;
+}
+
+.hero-flow__stage {
+  position: relative;
+  width: 100%;
+  height: clamp(420px, 46vw, 620px);
+  perspective: 2400px;
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.hero-flow__stage.is-dragging {
+  cursor: grabbing;
+}
+
+.hero-flow__stage.is-dragging .hero-flow__card {
+  animation-play-state: paused;
+}
+
+.hero-flow__tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(3deg) rotateY(-4deg);
+}
+
+.hero-flow__card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 58%;
+  margin: 0;
+  aspect-ratio: 1200 / 780;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+  animation: hero-flow-path 18s linear infinite;
+  animation-delay: calc(var(--i) * -18s / 7);
+  will-change: transform, opacity;
+}
+
+.hero-flow__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Sampled from tasteskill.dev's own hero carousel: a path that swoops from
+   far/top-back, through a near/front peak (the "hero" moment), out to
+   far/bottom-back, then loops. Every card runs the same keyframes, just
+   phase-shifted by animation-delay, so one curve drives the whole stage. */
+@keyframes hero-flow-path {
+  0%,
+  100% {
+    transform: translate3d(calc(-50% - 10%), calc(-50% - 300%), -1000px) rotateX(4deg) rotateY(-3deg) scale(0.44);
+    opacity: 0;
+    z-index: 1;
+  }
+  16.66% {
+    transform: translate3d(calc(-50% - 10%), calc(-50% - 169%), -141px) rotateX(2.66deg) rotateY(-1.81deg) scale(0.94);
+    opacity: 0.8;
+    z-index: 3;
+  }
+  33.33% {
+    transform: translate3d(calc(-50% - 10%), calc(-50% - 37.5%), 274px) rotateX(2deg) rotateY(-0.62deg) scale(1.18);
+    opacity: 1;
+    z-index: 5;
+  }
+  50% {
+    transform: translate3d(calc(-50% + 53%), calc(-50% + 66%), 142px) rotateX(2.2deg) rotateY(0.57deg) scale(1.1);
+    opacity: 0.94;
+    z-index: 4;
+  }
+  66.66% {
+    transform: translate3d(calc(-50% + 184%), calc(-50% + 70%), -318px) rotateX(2.9deg) rotateY(1.76deg) scale(0.83);
+    opacity: 0.72;
+    z-index: 2;
+  }
+  83.33% {
+    transform: translate3d(calc(-50% + 315%), calc(-50% + 70%), -972px) rotateX(3.96deg) rotateY(2.95deg) scale(0.46);
+    opacity: 0.04;
+    z-index: 1;
+  }
+}
+
+.hero-flow__mobile-track {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .hero-flow__stage {
+    display: none;
+  }
+
+  .hero-flow__mobile-track {
+    display: block;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .hero-flow__mobile-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: max-content;
+    padding-block: 6px;
+    animation: hero-flow-scroll 34s linear infinite;
+  }
+
+  .hero-flow__mobile-item {
+    flex: none;
+    width: 240px;
+    aspect-ratio: 1200 / 780;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border-strong);
+    box-shadow: 0 14px 30px -16px rgba(0, 0, 0, 0.35);
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  @keyframes hero-flow-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-flow__card {
+    animation: none;
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+
+  .hero-flow__card:not(:first-child) {
+    display: none;
+  }
+
+  .hero-flow__mobile-row {
+    animation: none;
+  }
+}
