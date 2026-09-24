@@ -21,7 +21,6 @@ const IMAGES = [
 ];
 
 const LOOP_MS = 18000;
-const MS_PER_PX = 60;
 
 /**
  * A 3D depth carousel of our own shipped screenshots, styled after
@@ -46,13 +45,55 @@ export function HeroFlow() {
     const cards = Array.from(stage.querySelectorAll<HTMLElement>(".hero-flow__card"));
     let dragging = false;
     let startY = 0;
+    let targetY = 0;
     let startTimes: number[] = [];
+    let msPerPx = LOOP_MS / stage.getBoundingClientRect().height;
+    let appliedDeltaMs = 0;
+    let lastTick = 0;
+    let rafId = 0;
+
+    // The automatic rotation advances at 1ms of timeline per 1ms of real
+    // time. Manual drag gets a faster ceiling than that (snappier, still
+    // responsive to quick mouse moves) but is never fully unbounded — a
+    // sudden flick still can't jump the whole carousel instantly.
+    const MAX_RATE = 4;
 
     const wrap = (t: number) => ((t % LOOP_MS) + LOOP_MS) % LOOP_MS;
+
+    // Runs every frame for the whole drag, independent of pointermove
+    // events. A rAF loop (rather than clamping between pointermove events)
+    // is what keeps the per-tick time budget small and steady even if the
+    // mouse pauses mid-drag and then continues — otherwise the idle gap
+    // reads as "elapsed time" and its very next step is free to jump
+    // however far the mouse has drifted, shuffling the whole stack.
+    const tick = () => {
+      const now = performance.now();
+      const maxStep = Math.min(now - lastTick, 50) * MAX_RATE;
+      lastTick = now;
+
+      const targetDeltaMs = (targetY - startY) * msPerPx;
+      const step = targetDeltaMs - appliedDeltaMs;
+      const clampedStep = Math.max(-maxStep, Math.min(maxStep, step));
+      appliedDeltaMs += clampedStep;
+
+      cards.forEach((card, i) => {
+        const anim = card.getAnimations()[0];
+        if (anim) anim.currentTime = wrap(startTimes[i] + appliedDeltaMs);
+      });
+
+      if (dragging) rafId = requestAnimationFrame(tick);
+    };
 
     const onPointerDown = (e: PointerEvent) => {
       dragging = true;
       startY = e.clientY;
+      targetY = e.clientY;
+      appliedDeltaMs = 0;
+      lastTick = performance.now();
+      // Dragging the stage's own height covers exactly one full loop, so a
+      // slow, deliberate drag moves through the carousel at the same rate
+      // the automatic rotation does — just under manual control.
+      msPerPx = LOOP_MS / stage.getBoundingClientRect().height;
       startTimes = cards.map((card) => {
         const anim = card.getAnimations()[0];
         anim?.pause();
@@ -60,20 +101,18 @@ export function HeroFlow() {
       });
       stage.setPointerCapture(e.pointerId);
       stage.classList.add("is-dragging");
+      rafId = requestAnimationFrame(tick);
     };
 
     const onPointerMove = (e: PointerEvent) => {
       if (!dragging) return;
-      const deltaMs = -(e.clientY - startY) * MS_PER_PX;
-      cards.forEach((card, i) => {
-        const anim = card.getAnimations()[0];
-        if (anim) anim.currentTime = wrap(startTimes[i] + deltaMs);
-      });
+      targetY = e.clientY;
     };
 
     const endDrag = (e: PointerEvent) => {
       if (!dragging) return;
       dragging = false;
+      cancelAnimationFrame(rafId);
       stage.classList.remove("is-dragging");
       if (stage.hasPointerCapture(e.pointerId)) stage.releasePointerCapture(e.pointerId);
       cards.forEach((card) => card.getAnimations()[0]?.play());
@@ -85,6 +124,7 @@ export function HeroFlow() {
     stage.addEventListener("pointercancel", endDrag);
 
     return () => {
+      cancelAnimationFrame(rafId);
       stage.removeEventListener("pointerdown", onPointerDown);
       stage.removeEventListener("pointermove", onPointerMove);
       stage.removeEventListener("pointerup", endDrag);

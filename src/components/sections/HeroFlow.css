@@ -6,7 +6,7 @@
 .hero-flow__stage {
   position: relative;
   width: 100%;
-  height: clamp(420px, 46vw, 620px);
+  height: clamp(480px, 56vw, 760px);
   perspective: 2400px;
   cursor: grab;
   touch-action: pan-y;
@@ -33,7 +33,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 58%;
+  width: 46%;
   margin: 0;
   aspect-ratio: 1200 / 780;
   border-radius: var(--radius-md);
@@ -52,39 +52,43 @@
   object-position: top center;
 }
 
-/* Sampled from tasteskill.dev's own hero carousel: a path that swoops from
+/* Inspired by tasteskill.dev's own hero carousel: a path that swoops from
    far/top-back, through a near/front peak (the "hero" moment), out to
    far/bottom-back, then loops. Every card runs the same keyframes, just
-   phase-shifted by animation-delay, so one curve drives the whole stage. */
+   phase-shifted by animation-delay, so one curve drives the whole stage.
+   The offset here is in vw/vh (viewport-relative), not %, deliberately:
+   percentages in `translate()` resolve against the CARD's own box, not
+   the stage, so copying tasteskill's raw percentages produced a much
+   smaller absolute gap on our smaller cards and the images overlapped. */
 @keyframes hero-flow-path {
   0%,
   100% {
-    transform: translate3d(calc(-50% - 10%), calc(-50% - 300%), -1000px) rotateX(4deg) rotateY(-3deg) scale(0.44);
+    transform: translate3d(calc(-50% - 2vw), calc(-50% - 42vh), -1000px) rotateX(4deg) rotateY(-3deg) scale(0.35);
     opacity: 0;
     z-index: 1;
   }
   16.66% {
-    transform: translate3d(calc(-50% - 10%), calc(-50% - 169%), -141px) rotateX(2.66deg) rotateY(-1.81deg) scale(0.94);
-    opacity: 0.8;
+    transform: translate3d(calc(-50% - 2vw), calc(-50% - 23vh), -140px) rotateX(2.66deg) rotateY(-1.81deg) scale(0.68);
+    opacity: 0.75;
     z-index: 3;
   }
   33.33% {
-    transform: translate3d(calc(-50% - 10%), calc(-50% - 37.5%), 274px) rotateX(2deg) rotateY(-0.62deg) scale(1.18);
+    transform: translate3d(calc(-50% - 2vw), calc(-50% - 4vh), 280px) rotateX(2deg) rotateY(-0.62deg) scale(1.05);
     opacity: 1;
     z-index: 5;
   }
   50% {
-    transform: translate3d(calc(-50% + 53%), calc(-50% + 66%), 142px) rotateX(2.2deg) rotateY(0.57deg) scale(1.1);
-    opacity: 0.94;
+    transform: translate3d(calc(-50% + 12vw), calc(-50% + 15vh), 130px) rotateX(2.2deg) rotateY(0.57deg) scale(0.9);
+    opacity: 0.92;
     z-index: 4;
   }
   66.66% {
-    transform: translate3d(calc(-50% + 184%), calc(-50% + 70%), -318px) rotateX(2.9deg) rotateY(1.76deg) scale(0.83);
-    opacity: 0.72;
+    transform: translate3d(calc(-50% + 24vw), calc(-50% + 23vh), -320px) rotateX(2.9deg) rotateY(1.76deg) scale(0.6);
+    opacity: 0.6;
     z-index: 2;
   }
   83.33% {
-    transform: translate3d(calc(-50% + 315%), calc(-50% + 70%), -972px) rotateX(3.96deg) rotateY(2.95deg) scale(0.46);
+    transform: translate3d(calc(-50% + 34vw), calc(-50% + 23vh), -980px) rotateX(3.96deg) rotateY(2.95deg) scale(0.32);
     opacity: 0.04;
     z-index: 1;
   }
