@@ -7,7 +7,6 @@
   position: relative;
   width: 100%;
   height: clamp(480px, 56vw, 760px);
-  perspective: 2400px;
   cursor: grab;
   touch-action: pan-y;
   -webkit-user-select: none;
@@ -25,8 +24,6 @@
 .hero-flow__tilt {
   position: absolute;
   inset: 0;
-  transform-style: preserve-3d;
-  transform: rotateX(3deg) rotateY(-4deg);
 }
 
 .hero-flow__card {
@@ -40,7 +37,7 @@
   overflow: hidden;
   background: var(--color-surface);
   animation: hero-flow-path 18s linear infinite;
-  animation-delay: calc(var(--i) * -18s / 7);
+  animation-delay: calc(var(--i) * -18s / 11);
   will-change: transform, opacity;
 }
 
@@ -52,43 +49,49 @@
   object-position: top center;
 }
 
-/* Inspired by tasteskill.dev's own hero carousel: a path that swoops from
-   far/top-back, through a near/front peak (the "hero" moment), out to
-   far/bottom-back, then loops. Every card runs the same keyframes, just
-   phase-shifted by animation-delay, so one curve drives the whole stage.
-   The offset here is in vw/vh (viewport-relative), not %, deliberately:
-   percentages in `translate()` resolve against the CARD's own box, not
-   the stage, so copying tasteskill's raw percentages produced a much
-   smaller absolute gap on our smaller cards and the images overlapped. */
+/* A path that swoops from far/top-back, through a near/front peak (the
+   "hero" moment), out to far/bottom-back, then loops. Every card runs the
+   same keyframes, just phase-shifted by animation-delay, so one curve
+   drives the whole stage. The offset here is in vw/vh (viewport-relative),
+   not %, deliberately: percentages in `translate()` resolve against the
+   CARD's own box, not the stage, so smaller cards produced a much smaller
+   absolute gap and the images overlapped.
+
+   Depth is carried by scale + opacity + z-index alone, not translateZ or
+   rotateX/rotateY under a perspective — Chromium rasterizes a card with a
+   3D perspective transform through a blurrier compositing path even at a
+   few degrees of tilt, which made every screenshot in the carousel read as
+   soft/pixelated regardless of source resolution. 2D transforms keep the
+   same swooping path crisp. */
 @keyframes hero-flow-path {
   0%,
   100% {
-    transform: translate3d(calc(-50% - 2vw), calc(-50% - 42vh), -1000px) rotateX(4deg) rotateY(-3deg) scale(0.35);
+    transform: translate(calc(-50% - 2vw), calc(-50% - 42vh)) scale(0.35);
     opacity: 0;
     z-index: 1;
   }
   16.66% {
-    transform: translate3d(calc(-50% - 2vw), calc(-50% - 23vh), -140px) rotateX(2.66deg) rotateY(-1.81deg) scale(0.68);
+    transform: translate(calc(-50% - 2vw), calc(-50% - 23vh)) scale(0.68);
     opacity: 0.75;
     z-index: 3;
   }
   33.33% {
-    transform: translate3d(calc(-50% - 2vw), calc(-50% - 4vh), 280px) rotateX(2deg) rotateY(-0.62deg) scale(1.05);
+    transform: translate(calc(-50% - 2vw), calc(-50% - 4vh)) scale(1.05);
     opacity: 1;
     z-index: 5;
   }
   50% {
-    transform: translate3d(calc(-50% + 12vw), calc(-50% + 15vh), 130px) rotateX(2.2deg) rotateY(0.57deg) scale(0.9);
+    transform: translate(calc(-50% + 12vw), calc(-50% + 15vh)) scale(0.9);
     opacity: 0.92;
     z-index: 4;
   }
   66.66% {
-    transform: translate3d(calc(-50% + 24vw), calc(-50% + 23vh), -320px) rotateX(2.9deg) rotateY(1.76deg) scale(0.6);
+    transform: translate(calc(-50% + 24vw), calc(-50% + 23vh)) scale(0.6);
     opacity: 0.6;
     z-index: 2;
   }
   83.33% {
-    transform: translate3d(calc(-50% + 34vw), calc(-50% + 23vh), -980px) rotateX(3.96deg) rotateY(2.95deg) scale(0.32);
+    transform: translate(calc(-50% + 34vw), calc(-50% + 23vh)) scale(0.32);
     opacity: 0.04;
     z-index: 1;
   }
@@ -145,7 +148,7 @@
   .hero-flow__card {
     animation: none;
     opacity: 1;
-    transform: translate3d(-50%, -50%, 0) scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 
   .hero-flow__card:not(:first-child) {

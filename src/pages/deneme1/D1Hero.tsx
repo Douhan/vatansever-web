@@ -1,4 +1,4 @@
-import { AnimatedNumber } from "../../components/motion/AnimatedNumber";
+import { D1HeroShowcase } from "./D1HeroShowcase";
 
 export function D1Hero() {
   return (
@@ -42,29 +42,7 @@ export function D1Hero() {
             </div>
             <span className="d1-panel__live">Canlı önizleme</span>
           </div>
-          <div className="d1-panel__stats">
-            <div className="d1-panel__stat">
-              <strong>
-                <AnimatedNumber value="%98" />
-              </strong>
-              <span>Müşteri memnuniyeti</span>
-            </div>
-            <div className="d1-panel__stat">
-              <strong>
-                <AnimatedNumber value="30+" />
-              </strong>
-              <span>Tamamlanan proje</span>
-            </div>
-          </div>
-          <div className="d1-panel__bars" aria-hidden="true">
-            <span style={{ height: "40%" }} />
-            <span style={{ height: "65%" }} />
-            <span style={{ height: "50%" }} />
-            <span style={{ height: "85%" }} />
-            <span style={{ height: "60%" }} />
-            <span style={{ height: "92%" }} />
-            <span style={{ height: "70%" }} />
-          </div>
+          <D1HeroShowcase />
         </div>
       </div>
     </section>

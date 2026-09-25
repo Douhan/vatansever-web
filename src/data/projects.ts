@@ -1,17 +1,28 @@
-import sentinelopsAdminDashboard from "../assets/case-studies/sentinelops/dashboard.png";
-import sentinelopsAdminPersonnel from "../assets/case-studies/sentinelops/personnel.png";
-import sentinelopsAdminCheckpoints from "../assets/case-studies/sentinelops/checkpoints.png";
-import sentinelopsAdminPatrols from "../assets/case-studies/sentinelops/patrols.png";
-import sentinelopsAdminLiveTracking from "../assets/case-studies/sentinelops/live-tracking.png";
-import sentinelopsAdminReports from "../assets/case-studies/sentinelops/reports.png";
-import sentinelopsGuardSplash from "../assets/case-studies/sentinelopsguard/splash.png";
+import sentinelopsAdminDashboard from "../assets/case-studies/sentinelops/dashboard.jpg";
+import sentinelopsAdminDashboardThumb from "../assets/case-studies/sentinelops/dashboard-thumb.jpg";
+import sentinelopsAdminPersonnel from "../assets/case-studies/sentinelops/personnel.jpg";
+import sentinelopsAdminCheckpoints from "../assets/case-studies/sentinelops/checkpoints.jpg";
+import sentinelopsAdminPatrols from "../assets/case-studies/sentinelops/patrols.jpg";
+import sentinelopsAdminLiveTracking from "../assets/case-studies/sentinelops/live-tracking.jpg";
+import sentinelopsAdminReports from "../assets/case-studies/sentinelops/reports.jpg";
 import sentinelopsGuardHome from "../assets/case-studies/sentinelopsguard/home.png";
-import sentinelopsGuardNotification from "../assets/case-studies/sentinelopsguard/notification.png";
-import sentinelopsGuardChecklist from "../assets/case-studies/sentinelopsguard/checklist.png";
-import sentinelopsGuardQrScan from "../assets/case-studies/sentinelopsguard/qr-scan.png";
 import sentinelopsGuardSchedule from "../assets/case-studies/sentinelopsguard/schedule.png";
 import sentinelopsGuardHistory from "../assets/case-studies/sentinelopsguard/history.png";
 import sentinelopsGuardProfile from "../assets/case-studies/sentinelopsguard/profile.png";
+import okulTakipSplash from "../assets/case-studies/okul-takip/splash.png";
+import okulTakipHome from "../assets/case-studies/okul-takip/home.png";
+import okulTakipTracking from "../assets/case-studies/okul-takip/tracking.png";
+import okulTakipNotification from "../assets/case-studies/okul-takip/notification.png";
+import okulTakipTeacherDashboard from "../assets/case-studies/okul-takip/teacher-dashboard.png";
+import okulTakipAdminPanel from "../assets/case-studies/okul-takip/admin-panel.png";
+import okulTakipAdminStudents from "../assets/case-studies/okul-takip/admin-students.png";
+import okulTakipHistory from "../assets/case-studies/okul-takip/history.png";
+import jenishHero from "../assets/case-studies/jenish-design/hero.jpg";
+import jenishHeroThumb from "../assets/case-studies/jenish-design/hero-thumb.jpg";
+import jenishServices from "../assets/case-studies/jenish-design/services.jpg";
+import jenishWork from "../assets/case-studies/jenish-design/work.jpg";
+import jenishClients from "../assets/case-studies/jenish-design/clients.jpg";
+import jenishClosing from "../assets/case-studies/jenish-design/closing.jpg";
 
 export type ProjectCategory = "Mobil Uygulama" | "Web Uygulaması" | "Web Sitesi";
 export type MockupType = "phone" | "browser";
@@ -36,6 +47,13 @@ export interface Project {
   result: string;
   /** Real product screenshot used on the portfolio card, in place of the abstract mockup. */
   screenshot?: string;
+  /**
+   * A tighter crop of `screenshot`, used wherever the image renders small
+   * (portfolio card, hero carousel). Dense screens read as noise at ~250px;
+   * this shows one clean focal area instead of the whole page shrunk down.
+   * Falls back to `screenshot` when the full screen is already simple enough.
+   */
+  screenshotThumb?: string;
   /** Full screenshot gallery shown on the project detail page. */
   screenshots?: string[];
 }
@@ -48,16 +66,7 @@ export const projects: Project[] = [
     mockup: "phone",
     accent: "linear-gradient(160deg, #4f6bdb, #1a2447)",
     screenshot: sentinelopsGuardHome,
-    screenshots: [
-      sentinelopsGuardSplash,
-      sentinelopsGuardHome,
-      sentinelopsGuardNotification,
-      sentinelopsGuardChecklist,
-      sentinelopsGuardQrScan,
-      sentinelopsGuardSchedule,
-      sentinelopsGuardHistory,
-      sentinelopsGuardProfile,
-    ],
+    screenshots: [sentinelopsGuardHome, sentinelopsGuardSchedule, sentinelopsGuardHistory, sentinelopsGuardProfile],
     summary:
       "Güvenlik personelinin QR ve konum doğrulamalı devriye turlarını yürüttüğü, vardiya programını ve geçmişini takip ettiği saha uygulaması.",
     tags: ["React Native", "Expo", "Supabase", "QR Doğrulama", "Konum Takibi", "Push Bildirim"],
@@ -82,6 +91,7 @@ export const projects: Project[] = [
     mockup: "browser",
     accent: "linear-gradient(160deg, #3b4f9e, #12172e)",
     screenshot: sentinelopsAdminDashboard,
+    screenshotThumb: sentinelopsAdminDashboardThumb,
     screenshots: [
       sentinelopsAdminDashboard,
       sentinelopsAdminLiveTracking,
@@ -108,84 +118,64 @@ export const projects: Project[] = [
       "Yöneticiler artık sahadaki her doğrulamayı anlık izleyebiliyor, devriye başarı oranını ve personel bazlı performansı tek tıkla raporlayabiliyor.",
   },
   {
-    slug: "finca",
-    name: "Finca",
+    slug: "okul-takip",
+    name: "Okul Takip",
     category: "Mobil Uygulama",
     mockup: "phone",
-    accent: "linear-gradient(160deg, #ffb04d, #ff6a1a)",
-    summary: "Kişisel bütçe ve harcama takibini basitleştiren mobil finans uygulaması.",
-    tags: ["React Native", "Swift", "Grafik & Raporlama"],
+    accent: "linear-gradient(160deg, #4a6d94, #1E3A5F)",
+    screenshot: okulTakipHome,
+    screenshots: [
+      okulTakipSplash,
+      okulTakipHome,
+      okulTakipTracking,
+      okulTakipNotification,
+      okulTakipTeacherDashboard,
+      okulTakipAdminPanel,
+      okulTakipAdminStudents,
+      okulTakipHistory,
+    ],
+    summary:
+      "Velilerin okula varış sürelerini canlı paylaştığı, öğretmenlerin anlık bildirim aldığı ve okul yönetiminin veli/öğretmen/sınıf kayıtlarını tek panelden yönettiği bir okul-veli iletişim uygulaması.",
+    tags: ["React Native", "Expo", "Supabase", "Canlı Konum", "Push Bildirim", "Çoklu Rol"],
     stats: [
-      { label: "İndirme", value: "50K+" },
-      { label: "Mağaza puanı", value: "4.8/5" },
-      { label: "Geliştirme süresi", value: "9 hafta" },
+      { label: "Kullanıcı rolü", value: "Veli / Öğretmen / Yönetim" },
+      { label: "Bildirim", value: "Anlık Push" },
+      { label: "Konum paylaşımı", value: "Sadece Yol Boyunca" },
     ],
     overview:
-      "Finca, kullanıcıların günlük harcamalarını kolayca kaydedip bütçe hedefleri belirleyebildiği bir kişisel finans uygulaması.",
+      "Okul Takip, velilerin çocuklarını okuldan almaya geldiklerinde konumlarını okula gerçek zamanlı bildirdiği, öğretmenlerin bu bildirimi anlık gördüğü ve okul yönetiminin tüm veli/öğretmen/sınıf kayıtlarını tek panelden yönettiği bir mobil uygulamadır.",
     challenge:
-      "Kullanıcıların çoğu mevcut finans uygulamalarını karmaşık buluyor ve birkaç kullanımdan sonra bırakıyordu.",
+      "Veli alım saatlerinde okul önünde kimin ne zaman geleceği belli olmuyor, öğretmenler her veliyi telefonla ya da göz kararıyla takip etmek zorunda kalıyor, okul yönetimi de veli/öğrenci/sınıf kayıtlarını dağınık tablolarla yönetiyordu.",
     solution:
-      "Tek ekranda hızlı harcama girişi, otomatik kategori önerileri ve sade grafiklerle odak, karmaşadan sadeliğe kaydırıldı.",
+      "Veli yola çıktığında konumunu yalnızca okula varana kadar paylaşan bir takip ekranı, okula 100 metre kala öğretmene otomatik push bildirim gönderen bir uyarı sistemi ve yönetim tarafında veli/öğretmen/sınıf kayıtlarını tek yerden yönetilebilen bir panel kurduk.",
     result:
-      "Lansmandan sonraki ilk 3 ayda 50.000'in üzerinde indirme ve %68 haftalık aktif kullanım oranına ulaşıldı.",
+      "Öğretmenler veli geldiğinde önceden haberdar oluyor, alım süreci saniyeler içinde tamamlanıyor; okul yönetimi de tüm kullanıcı ve sınıf kayıtlarını tek panelden yönetiyor.",
   },
   {
-    slug: "rotaly",
-    name: "Rotaly",
-    category: "Web Uygulaması",
+    slug: "jenish-design",
+    name: "Jenish Design",
+    category: "Web Sitesi",
     mockup: "browser",
-    accent: "linear-gradient(160deg, #ffcf86, #ff8a3a)",
-    summary: "Ekip seyahatlerini planlayan, bütçeyi ve rotayı tek panelde toplayan web uygulaması.",
-    tags: ["Next.js", "PostgreSQL", "Harita Entegrasyonu"],
+    accent: "linear-gradient(160deg, #3a5fb0, #101a3d)",
+    screenshot: jenishHero,
+    screenshotThumb: jenishHeroThumb,
+    screenshots: [jenishHero, jenishServices, jenishWork, jenishClients, jenishClosing],
+    summary:
+      "Bişkek merkezli bir marka ve pazarlama stüdyosunun; logo, ambalaj, tabela, kurumsal giyim ve dijital işlerini tek çatı altında sunduğu, 50'den fazla markanın kimliğini kurduğu kurumsal tanıtım sitesi.",
+    tags: ["Next.js", "Prisma", "next-intl", "Çoklu Dil"],
     stats: [
-      { label: "Aktif ekip", value: "220+" },
-      { label: "Planlama süresi", value: "%55 azaldı" },
-      { label: "Geliştirme süresi", value: "12 hafta" },
+      { label: "Marka sayısı", value: "50+" },
+      { label: "Dil desteği", value: "5 Dil" },
+      { label: "Paket kalemi", value: "24 Teslim" },
     ],
     overview:
-      "Rotaly, şirketlerin ekip seyahatlerini; uçuş, konaklama ve bütçe onayını tek bir panelden yönetmesini sağlıyor.",
+      "Jenish Design, Bişkek merkezli bir marka ve pazarlama stüdyosunun; logo, ambalaj, tabela, kurumsal giyim ve dijital projelerini beş dilde anlattığı kurumsal web sitesidir.",
     challenge:
-      "Seyahat planlaması e-posta ve tablolar arasında dağılmış durumdaydı; onay süreçleri günler sürüyordu.",
+      "Stüdyonun 50'den fazla marka için ürettiği çok kanallı iş (tabela, ambalaj, araç giydirme, dijital) tek bir yerde, hizmet alanına göre filtrelenebilir ve ziyaretçinin saniyeler içinde 'bana uygun paket hangisi' sorusuna cevap bulabileceği şekilde sunulmalıydı.",
     solution:
-      "Rota, bütçe ve onay akışını tek bir çalışma alanında birleştiren, gerçek zamanlı işbirliğine açık bir panel kurduk.",
-    result: "Ortalama planlama süresi %55 azaldı, onay süreçleri günlerden saatlere indi.",
-  },
-  {
-    slug: "marketo",
-    name: "Marketo",
-    category: "Web Sitesi",
-    mockup: "browser",
-    accent: "linear-gradient(160deg, #ff8a3a, #c73f0a)",
-    summary: "Butik bir moda markası için yüksek dönüşümlü e-ticaret sitesi.",
-    tags: ["Next.js", "Headless Commerce", "SEO"],
-    stats: [
-      { label: "Dönüşüm oranı", value: "%120 artış" },
-      { label: "Sayfa yükleme", value: "%40 daha hızlı" },
-      { label: "Geliştirme süresi", value: "7 hafta" },
-    ],
-    overview: "Marketo, hazır e-ticaret altyapılarının sınırlarını aşmak isteyen bir moda markasının yeni web sitesi.",
-    challenge: "Eski site yavaştı, mobilde zor kullanılıyordu ve marka kimliğini yansıtmıyordu.",
-    solution:
-      "Headless mimari ile hem performansı hem tasarım özgürlüğünü artırdık; ürün sayfalarını dönüşüm odaklı yeniden kurguladık.",
-    result: "İlk çeyrekte dönüşüm oranı %120 arttı, ortalama sayfa yükleme süresi %40 kısaldı.",
-  },
-  {
-    slug: "studio-blanc",
-    name: "Studio Blanc",
-    category: "Web Sitesi",
-    mockup: "browser",
-    accent: "linear-gradient(160deg, #ffd9a8, #ff6a1a)",
-    summary: "Bir iç mimarlık stüdyosu için portfolyo ağırlıklı tanıtım sitesi.",
-    tags: ["React", "Vite", "Mikro Animasyon"],
-    stats: [
-      { label: "Teklif talebi", value: "%80 artış" },
-      { label: "Ortalama ziyaret süresi", value: "3.4 dk" },
-      { label: "Geliştirme süresi", value: "5 hafta" },
-    ],
-    overview: "Studio Blanc, projelerini büyük görsellerle anlatan bir iç mimarlık stüdyosunun tanıtım sitesi.",
-    challenge: "Stüdyonun eski sitesi projeleri küçük galerilerde gösteriyor, marka hissini yansıtmıyordu.",
-    solution: "Tam ekran proje anlatımları, ince geçiş animasyonları ve sade bir tipografi ile sitenin tamamını yeniden kurguladık.",
-    result: "Yayına girdikten sonraki 2 ayda teklif taleplerinde %80 artış gözlendi.",
+      "Hizmet alanına göre filtrelenebilen bir iş vitrini, üç net paket seçeneği ve gerçek marka logolarının yer aldığı bir güven şeridiyle, ziyaretçinin hızla 'bu stüdyo benim işimi yapabilir mi' sorusuna cevap bulmasını sağladık.",
+    result:
+      "Site beş dilde yayında; potansiyel müşteriler hizmet alanına göre filtreleyip ilgili örnek işleri görebiliyor, paket karşılaştırmasını tek sayfada yapabiliyor.",
   },
 ];
 

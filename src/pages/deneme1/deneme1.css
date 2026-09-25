@@ -394,48 +394,88 @@
   box-shadow: 0 0 8px 2px rgba(34, 211, 238, 0.8);
 }
 
-.d1-panel__stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 18px;
+.d1-showcase__stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
 }
 
-.d1-panel__stat {
-  padding: 14px 16px;
-  border-radius: var(--d1-radius-sm);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--d1-border);
+.d1-showcase__mac {
+  max-width: 100%;
 }
 
-.d1-panel__stat strong {
-  display: block;
+.d1-showcase__mac,
+.d1-showcase__phone {
+  animation: d1-showcase-fade 0.5s var(--ease-out);
+}
+
+@keyframes d1-showcase-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.d1-showcase__caption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.d1-showcase__badge {
+  padding: 4px 10px;
+  border-radius: var(--d1-radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--d1-cyan);
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+}
+
+.d1-showcase__name {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-weight: 600;
+  font-size: 14px;
   color: #fff;
 }
 
-.d1-panel__stat span {
-  font-size: 11.5px;
-  color: var(--d1-text-faint);
-}
-
-.d1-panel__bars {
+.d1-showcase__dots {
   display: flex;
-  align-items: flex-end;
-  gap: 6px;
-  height: 70px;
-  padding: 14px;
-  border-radius: var(--d1-radius-sm);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--d1-border);
+  gap: 8px;
+  margin-top: 14px;
 }
 
-.d1-panel__bars span {
-  flex: 1;
-  border-radius: 4px 4px 0 0;
+.d1-showcase__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: var(--d1-radius-pill);
+  background: var(--d1-border);
+  cursor: pointer;
+  transition: width 0.25s var(--ease-out), background 0.25s var(--ease-out);
+}
+
+.d1-showcase__dot:hover {
+  background: var(--d1-violet);
+}
+
+.d1-showcase__dot.is-active {
+  width: 22px;
   background: var(--d1-gradient);
-  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d1-showcase__mac,
+  .d1-showcase__phone {
+    animation: none;
+  }
 }
 
 /* Services */

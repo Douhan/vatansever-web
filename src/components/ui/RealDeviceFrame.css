@@ -1,0 +1,40 @@
+.real-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.real-frame__body {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.real-frame__screen {
+  position: absolute;
+  object-fit: cover;
+}
+
+.real-frame--phone {
+  aspect-ratio: 1200 / 786;
+}
+
+.real-frame--phone .real-frame__screen {
+  left: 38%;
+  top: 14%;
+  width: 21.3%;
+  aspect-ratio: 256 / 545;
+  border-radius: 9% / 5.5%;
+}
+
+.real-frame--mac {
+  aspect-ratio: 1600 / 900;
+}
+
+.real-frame--mac .real-frame__screen {
+  left: 32.5%;
+  top: 25.2%;
+  width: 34.7%;
+  aspect-ratio: 555 / 350;
+}

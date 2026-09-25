@@ -26,7 +26,12 @@ export function PortfolioGrid() {
               className="portfolio-card card"
             >
               <div className="portfolio-card__preview">
-                <DeviceMockup type={project.mockup} accent={project.accent} image={project.screenshot} alt={project.name} />
+                <DeviceMockup
+                  type={project.mockup}
+                  accent={project.accent}
+                  image={project.screenshotThumb ?? project.screenshot}
+                  alt={project.name}
+                />
               </div>
               <div className="portfolio-card__body">
                 <Badge>{project.category}</Badge>

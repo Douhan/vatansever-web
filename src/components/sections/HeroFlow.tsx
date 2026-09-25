@@ -1,23 +1,31 @@
 import { useEffect, useRef } from "react";
 
-import sentinelopsAdminDashboard from "../../assets/case-studies/sentinelops/dashboard.png";
-import sentinelopsAdminLiveTracking from "../../assets/case-studies/sentinelops/live-tracking.png";
-import sentinelopsAdminPersonnel from "../../assets/case-studies/sentinelops/personnel.png";
-import sentinelopsAdminCheckpoints from "../../assets/case-studies/sentinelops/checkpoints.png";
-import sentinelopsAdminPatrols from "../../assets/case-studies/sentinelops/patrols.png";
-import sentinelopsAdminReports from "../../assets/case-studies/sentinelops/reports.png";
+import sentinelopsAdminDashboardThumb from "../../assets/case-studies/sentinelops/dashboard-thumb.jpg";
+import sentinelopsAdminLiveTracking from "../../assets/case-studies/sentinelops/live-tracking.jpg";
+import sentinelopsAdminPersonnel from "../../assets/case-studies/sentinelops/personnel.jpg";
+import sentinelopsAdminCheckpoints from "../../assets/case-studies/sentinelops/checkpoints.jpg";
+import sentinelopsAdminPatrols from "../../assets/case-studies/sentinelops/patrols.jpg";
+import sentinelopsAdminReports from "../../assets/case-studies/sentinelops/reports.jpg";
 import sentinelopsGuardHome from "../../assets/case-studies/sentinelopsguard/home.png";
+import okulTakipHome from "../../assets/case-studies/okul-takip/home.png";
+import okulTakipTracking from "../../assets/case-studies/okul-takip/tracking.png";
+import okulTakipAdminPanel from "../../assets/case-studies/okul-takip/admin-panel.png";
+import jenishHeroThumb from "../../assets/case-studies/jenish-design/hero-thumb.jpg";
 
 import "./HeroFlow.css";
 
 const IMAGES = [
-  { src: sentinelopsAdminDashboard, alt: "SentinelOps yönetim paneli — dashboard" },
+  { src: sentinelopsAdminDashboardThumb, alt: "SentinelOps yönetim paneli — dashboard" },
   { src: sentinelopsAdminLiveTracking, alt: "SentinelOps canlı takip ekranı" },
   { src: sentinelopsAdminPersonnel, alt: "SentinelOps personel ekranı" },
   { src: sentinelopsAdminCheckpoints, alt: "SentinelOps kontrol noktaları ekranı" },
   { src: sentinelopsAdminPatrols, alt: "SentinelOps devriye rotaları ekranı" },
   { src: sentinelopsAdminReports, alt: "SentinelOps raporlar ekranı" },
   { src: sentinelopsGuardHome, alt: "SentinelOpsGuard mobil ana ekran" },
+  { src: okulTakipHome, alt: "Okul Takip veli ana ekranı" },
+  { src: okulTakipTracking, alt: "Okul Takip canlı takip ekranı" },
+  { src: okulTakipAdminPanel, alt: "Okul Takip yönetim paneli" },
+  { src: jenishHeroThumb, alt: "Jenish Design ana sayfası" },
 ];
 
 const LOOP_MS = 18000;
